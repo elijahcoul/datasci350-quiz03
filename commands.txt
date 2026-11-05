@@ -107,3 +107,64 @@ git add commands.txt
 git commit -m "Add commentator chatbot"
 
 git push
+
+7)
+
+cd ollama
+
+python3 ask_local.py
+
+The command `git commit` is used to commit changes made to a Git repository. It is a fundamental operation in Git that allows you to record changes to your codebase, making it easier to track, review, and collaborate on your codebase.
+CompletionUsage(completion_tokens=51, prompt_tokens=36, total_tokens=87, completion_tokens_details=None, prompt_tokens_details=PromptTokensDetails(audio_tokens=None, cached_tokens=0))
+
+nano ask_local.py
+
+python3 ask_local.py
+
+Ah, a question about coding and programming languages. Git is an essential tool for developers who work on projects. It allows them to track changes and collaborate effectively. If you're interested in learning more about it, I can explain the basics of how it works!
+CompletionUsage(completion_tokens=53, prompt_tokens=159, total_tokens=212, completion_tokens_details=None, prompt_tokens_details=PromptTokensDetails(audio_tokens=None, cached_tokens=3))
+
+Commentator uses more prompt tokens because it included the system prompt in the request, so it had to evaluate more information before returning a response.
+
+8)
+
+python3 ask_json.py
+
+{ "answer": "I am an AI assistant designed for sports commentary,
+length
+Traceback (most recent call last):
+  File "/home/elija/datasci350-quiz03/ollama/ask_json.py", line 18, in <module>
+    print(json.loads(reply)["answer"])
+          ~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.14/json/__init__.py", line 352, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/usr/lib/python3.14/json/decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/json/decoder.py", line 361, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ~~~~~~~~~~~~~~^^^^^^^^
+json.decoder.JSONDecodeError: Unterminated string starting at: line 1 column 13 (char 12)
+
+The finish reason is length. 
+
+nano ask_json.py
+
+{ "answer": "I am an AI assistant designed for sports commentary, so I don't have a specific answer on what 'git commit' does. However, if you want to know about the next exciting play continue to tune in!" }
+stop
+I am an AI assistant designed for sports commentary, so I don't have a specific answer on what 'git commit' does. However, if you want to know about the next exciting play continue to tune in!
+
+The script failed earlier because the response hit the max token limit.
+
+cd ..
+
+git add ollama
+
+nano commands.txt
+
+git add commands.txt
+
+git commit -m "Add Python calls"
+
+git push
