@@ -19,7 +19,9 @@ ollama show granite4:350m
     Apache License
     Version 2.0, January 2004
     ...
+
 ollama ls
+
 NAME                                                                         ID              SIZE      MODIFIED
 granite4:350m                                                                5eee845b49c4    708 MB    33 seconds ago   
 embeddinggemma:latest                                                        3a2d262bdb75    621 MB    6 days ago       
@@ -166,5 +168,100 @@ nano commands.txt
 git add commands.txt
 
 git commit -m "Add Python calls"
+
+git push
+
+9)
+
+cp /mnt/c/Users/elija/Downloads/datasci350.pem ./
+
+10)
+
+chmod 400 "datasci350.pem"
+
+ssh -i "datasci350.pem" ubuntu@ec2-18-117-245-103.us-east-2.compute.amazonaws.com
+
+The authenticity of host 'ec2-18-117-245-103.us-east-2.compute.amazonaws.com (18.117.245.103)' can't be established.
+ED25519 key fingerprint is: SHA256:Cw1jNIxoySyHy7xAcuSqmh5fCtlm4zMLalpZcS9EXM0
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'ec2-18-117-245-103.us-east-2.compute.amazonaws.com' (ED25519) to the list of known hosts.
+Welcome to Ubuntu 26.04.1 LTS (GNU/Linux 7.0.0-1014-aws x86_64)
+
+ * Documentation:  https://docs.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Thu Nov  5 23:13:16 UTC 2026
+
+  System load:  0.01              Temperature:           -273.1 C
+  Usage of /:   30.4% of 6.61GB   Processes:             120
+  Memory usage: 26%               Users logged in:       0
+  Swap usage:   0%                IPv4 address for ens5: 172.31.19.74
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+11)
+
+sudo apt update
+
+sudo apt upgrade -y
+
+sudo apt install python3-pip
+
+sudo apt install -y python3-seaborn python3-pandas python3-matplotlib
+
+12)
+
+cd datasci350-quiz03
+
+scp -i datasci350.pem aws/traffic_analysis.py ubuntu@ec2-18-117-245-103.us-east-2.compute.amazonaws.com:~/
+
+scp -i datasci350.pem aws/website_traffic.txt ubuntu@ec2-18-117-245-103.us-east-2.compute.amazonaws.com:~/
+
+13)
+
+python3 traffic_analysis.py > results.txt
+
+cat /var/lib/cloud/data/instance-id >> results.txt
+
+sha256sum results.txt > fingerprint.txt
+
+14)
+
+scp -i datasci350.pem ubuntu@ec2-18-117-245-103.us-east-2.compute.amazonaws.com:~/results.txt ./aws/
+
+scp -i datasci350.pem ubuntu@ec2-18-117-245-103.us-east-2.compute.amazonaws.com:~/fingerprint.txt ./aws/
+
+scp -i datasci350.pem ubuntu@ec2-18-117-245-103.us-east-2.compute.amazonaws.com:~/traffic_analysis.png ./aws/
+
+15)
+
+nano commands.txt
+
+When you stop an instance instead of terminating, you still pay for the disk (but not computing).
+
+AI: none
+
+git add .
+
+git commit -m "Add AWS analysis results"
 
 git push
