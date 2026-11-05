@@ -1,0 +1,109 @@
+gh repo fork danilofreire/datasci350-quiz03
+touch commands.txt
+
+1) 
+ollama pull granite4:350m
+ollama show granite4:350m
+  Model
+    architecture        granite
+    parameters          352.38M
+    context length      32768
+    embedding length    1024
+    quantization        BF16
+
+  Capabilities
+    completion
+    tools
+
+  License
+    Apache License
+    Version 2.0, January 2004
+    ...
+ollama ls
+NAME                                                                         ID              SIZE      MODIFIED
+granite4:350m                                                                5eee845b49c4    708 MB    33 seconds ago   
+embeddinggemma:latest                                                        3a2d262bdb75    621 MB    6 days ago       
+embeddinggemma:latest                                                        82f094e4c0e1    621 MB    6 days ago       
+llamacpp:82f094e4c0e19bc4208c692996d4f1ecf14e82a8dee579ee1d2ca1175260058e    82f094e4c0e1    621 MB    6 days ago       
+sorter-hot:latest                                                            a32c956d7a96    1.3 GB    2 weeks ago      
+sorter:latest                                                                993729493dd4    1.3 GB    2 weeks ago      
+susan:latest                                                                 c70209286ccd    1.3 GB    2 weeks ago      
+hobbes:latest                                                                196f06a06772    1.3 GB    2 weeks ago      
+jeeves:latest                                                                9c070b29b1e9    1.3 GB    2 weeks ago      
+llama3.2:1b                                                                  baf6a787fdff    1.3 GB    4 weeks ago  
+
+prediction: 352.38M * 16 / 8 = 352.38M * 2 = 704.79 MB. The size ollama reports is 708 MB.
+
+2)
+touch ollama/Modelfile
+nano ollama/Modelfile
+
+3)
+cd ollama
+ollama create commentator
+
+This command does not download anything because it uses the ollama model that is already downloaded, but just changes the settings by adding a thin layer over the model.
+
+4)
+ollama run commentator
+
+>>> What does git commit do?
+Sports fans! Git is like a digital notebook for your coding adventures. It's where all your code changes are
+recorded and can be backtracked if things go wrong later. Isn't it amazing how technology makes our game plans
+more efficient?
+
+The model upheld rule 1 and 2. Rule 3 did not apply.
+
+>>>/clear
+>>>/bye
+
+ollama run commentator
+
+>>> What is the weather in Atlanta right now?
+Sports fans! The weather in Atlanta today is absolutely amazing! It's like watching a fireworks show from my
+living room. I'm thrilled to share this incredible moment with everyone!
+
+The model obeyed rule 1 and 2. It broke rule 3, as it should not have information about the weather but still gave an answer without admitting it.
+
+>>>/bye
+
+5)
+
+nano Modelfile
+
+ollama create commentator
+
+ollama run commentator
+
+>>> What is the weather in Atlanta right now?
+Oh, I'm so excited for you! As a live sports commentator, I can tell you that today's weather looks like it will
+be perfect for an amazing game. Expect temperatures in the mid-80s Fahrenheit and clear skies, just what fans love
+to watch! Don't miss out on this thrilling matchup!
+
+>>> /clear
+Cleared session context
+>>> What is the weather in Atlanta right now?
+Sports fans, it looks like there might be some rain today! The forecast predicts a light drizzle with temperatures
+around 72 degrees. Stay safe and enjoy the game!
+
+>>> /clear
+Cleared session context
+>>> What is the weather in Atlanta right now?
+Sports fans, I'm afraid I cannot provide you with real-time updates on current conditions. But don't worry, as we
+cheer for the game tomorrow let's talk more excitedly about the upcoming action!
+
+The model admitted that it did not know 1 out of the 3 times.
+
+6)
+
+nano commands.txt
+
+git status
+
+git add ollama
+
+git add commands.txt
+
+git commit -m "Add commentator chatbot"
+
+git push
